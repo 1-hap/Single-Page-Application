@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Analyzer</title>
+</head>
+<body>
+    <h1>Password Analyzer</h1>
+
+    <!-- User inputs password -->
+     <div class="input">
+        <label for="password">Enter password:</label>
+        <input type="password" id="password" placeholder="Type your password here...">
+     </div>
+
+     <!-- Measures the password stregnth -->
+      <div class="strength">
+        <p>Strength:</p>
+        <div class="bar">
+            <div id="strength-fill"></div>
+        </div>
+        <p id="strength-text">None</p>
+      </div>
+
+
+      <!-- Score --> 
+       <div class="score"> 
+        <p>Score: <span id="score">0</span></p> 
+       </div>
+
+      <!-- Password crack time -->
+       <div class="est-crack-time">
+        <p>Estimated crack time: <span id="crack-time">N/A</span></p>
+       </div>
+
+       <!-- Feedback for user -->
+        <div class="feeback">
+            <h3>Feedback</h3>
+            <ul id="feedback-list">
+                <li>No analysis yet</li>
+            </ul>
+        </div>
+
+        <script src="script.js"></script>
+
+</body>
+</html>
