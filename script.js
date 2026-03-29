@@ -1,9 +1,11 @@
 const passwordInput =  document.getElementById("password"); // creates variable that calls to password id in html
 
-passwordInput.addEventListener("input", function () { // listens for user input 
+passwordInput.addEventListener("keydown", function (event) { // listens for user input
+    if (event.key === "Enter") { // After user presses enter password is logged
     const password = passwordInput.value; // new variable that gets the current text inside input
     analyzePassword(password); // calls function and passes passwrod as input
-});
+    }
+    });
 
 function analyzePassword(password) { // simple if function to give score based on length of pass
     let score = 0; // changeable variable set at 0
