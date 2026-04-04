@@ -1,76 +1,238 @@
-/* General Page Styling */
+/* ===== IMPORTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+/* ===== VARIABLES ===== */
+:root {
+    --bg-page: #f5f0e8;
+    --bg-card: #ffffff;
+    --bg-input: #faf7f2;
+    --border: #e8e0d4;
+    --border-focus: #c9a97a;
+    --text-primary: #1a1612;
+    --text-secondary: #6b5d4f;
+    --text-muted: #a89a8a;
+    --accent: #c9783d;
+    --accent-light: rgba(201, 120, 61, 0.1);
+    --accent-soft: #d4956a;
+    --red: #c0392b;
+    --orange: #c9783d;
+    --yellow: #b8912a;
+    --green: #5a8a5e;
+}
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
 body {
-font-family: Arial, sans-serif;
-background-color: #f4f6f8;
-margin: 0;
-padding: 0;
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-/* Main Container */
+/* ===== CONTAINER ===== */
 .container {
-max-width: 500px;
-margin: 50px auto;
-padding: 20px;
-background-color: white;
-border-radius: 10px;
-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 36px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(26, 22, 18, 0.06);
+    animation: fadeIn 0.5s ease-out;
 }
 
-/* Headings */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HEADINGS ===== */
 h1 {
-text-align: center;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
 }
 
-/* Input Section */
+h1::after {
+    content: 'Test the strength of your password';
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-top: 8px;
+    margin-bottom: 32px;
+    letter-spacing: 0;
+}
+
+h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+/* ===== INPUT SECTION ===== */
 .input {
-margin-bottom: 20px;
+    margin-bottom: 28px;
 }
 
-input[type="password"] {
-width: 100%;
-padding: 10px;
-margin-top: 5px;
-border-radius: 5px;
-border: 1px solid #ccc;
-font-size: 16px;
+.input label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
 }
 
-/* Strength Section */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 14px 80px 14px 16px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    background-color: var(--bg-input);
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+input[type="password"]:focus,
+input[type="text"]:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--accent-light);
+    background-color: #fff;
+}
+
+input[type="password"]::placeholder,
+input[type="text"]::placeholder {
+    color: var(--text-muted);
+    letter-spacing: 0;
+    font-family: 'DM Sans', sans-serif;
+}
+
+#toggle-btn {
+    position: absolute;
+    right: 12px;
+    padding: 6px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#toggle-btn:hover {
+    background: rgba(201, 120, 61, 0.2);
+}
+
+/* ===== STRENGTH SECTION ===== */
 .strength {
-margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
-/* Strength Bar */
+.strength > p {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+#strength-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-top: 4px;
+}
+
+/* ===== STRENGTH BAR ===== */
 .bar {
-width: 100%;
-height: 10px;
-background-color: #ddd;
-border-radius: 5px;
-overflow: hidden;
-margin: 5px 0;
+    width: 100%;
+    height: 6px;
+    background-color: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 10px 0;
 }
 
 #strength-fill {
-height: 100%;
-width: 0%;
-background-color: red;
-transition: width 0.3s ease;
+    height: 100%;
+    width: 0%;
+    background-color: var(--red);
+    border-radius: 3px;
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.4s ease;
 }
 
-/* Score & Crack Time */
+/* ===== SCORE & CRACK TIME ===== */
 .score, .est-crack-time {
-margin-bottom: 15px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
 }
 
-/* Feedback Section */
-.feedback {
-margin-top: 20px;
+.score span, .est-crack-time span {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    color: var(--accent);
 }
 
-.feedback ul {
-padding-left: 20px;
+/* ===== FEEDBACK SECTION ===== */
+.feeback {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
 }
 
-.feedback li {
-margin-bottom: 5px;
+.feeback ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.feeback li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-left: 3px solid var(--accent-soft);
+    line-height: 1.5;
+    transition: background-color 0.2s ease;
+}
+
+.feeback li:hover {
+    background-color: var(--accent-light);
 }

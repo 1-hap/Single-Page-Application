@@ -1,4 +1,5 @@
 const passwordInput =  document.getElementById("password"); // creates variable that calls to password id in html
+const toggleBtn = document.getElementById("toggle-btn");
 
 passwordInput.addEventListener("keydown", function (event) { // listens for user input
     if (event.key === "Enter") { // After user presses enter password is logged
@@ -6,6 +7,17 @@ passwordInput.addEventListener("keydown", function (event) { // listens for user
     analyzePassword(password); // calls function and passes passwrod as input
     }
     });
+
+    toggleBtn.addEventListener("click", function () {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleBtn.textContent = "hide";
+        } else {
+            passwordInput.type = "password";
+            toggleBtn.textContent = "show";
+        }
+    });
+
 
 function analyzePassword(password) { // simple if function to give score based on length of pass
     let score = 0; // changeable variable set at 0
@@ -23,20 +35,20 @@ function analyzePassword(password) { // simple if function to give score based o
     }
 
     // Case checker
-    if (/A-Z/.test(password)) { // If the password doesnt include uppercase letters the feedback prints include uppercase
+    if (/[A-Z]/.test(password)) { // If the password doesnt include uppercase letters the feedback prints include uppercase
         score += 1;
     } else {
         feedback.push("Add uppercase letters.");
     }
 
-    if (/a-z/.test(password)) { // Same concept as uppercase checker
+    if (/[a-z]/.test(password)) { // Same concept as uppercase checker
         score += 1;
     } else {
         feedback.push("Add lowercase letters.")
     }
 
     // Number checker
-    if (/0-9/.test(password)) { // Same concept
+    if (/[0-9]/.test(password)) { // Same concept
         score += 1;
     } else {
         feedback.push("Include numbers.")
@@ -81,7 +93,7 @@ function estimateCrackTime(password) { // Gives estimated crack time based on pa
 
 }
 
-function updateUI(score) {
+function updateUI(score, feedback, crackTime) {
     const scoreDisplay = document.getElementById("score"); // creates variable that calls to score
     const strengthText = document.getElementById("strength-text"); // creates variable that calls to s-text
     const feedbackList = document.getElementById("feedback-list");
@@ -98,6 +110,21 @@ function updateUI(score) {
         strengthText.textContent = "Medium";
     } else {
         strengthText.textContent = "Strong";
+    }
+
+    // Strngth bar
+    const strengthFill = document.getElementById("strength-fill");
+    const percentage = Math.min((score / 6) * 100, 100);
+    strengthFill.style.width = percentage + "%";
+
+    if (score <=1) {
+        strengthFill.style.backgroundColor = "red";
+    } else if (score <= 3) {
+        strengthFill.style.backgroundColor = "orange";
+    } else if (score <= 5) {
+        strengthFill.style.backgroundColor = "gold";
+    } else {
+        strengthFill.style.backgroundColor = "green";
     }
 
     //Crack time
