@@ -80,13 +80,13 @@ function analyzePassword(password) { // simple if function to give score based o
     let feedback = []
 
     // Password length check
-    if (password.length >= config.minLength) { // CHANGED: uses config.minLength instead of 8
+    if (password.length >= config.minLength) { // uses config.minLength instead of 8
         score += 1; // adds 1 to current score
     } else {
-        feedback.push("Your password should be atleast " + config.minLength + " characters."); // CHANGED: uses config.minLength
+        feedback.push("Your password should be atleast " + config.minLength + " characters."); //uses config.minLength
     }
 
-    if (password.length >= config.longLength ) { // CHANGED: uses config.longLength instead of 12
+    if (password.length >= config.longLength ) { // uses config.longLength instead of 12
         score += 1;
     }
 
